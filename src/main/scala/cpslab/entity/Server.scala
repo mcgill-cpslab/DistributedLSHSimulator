@@ -10,3 +10,7 @@ class Server(processingQueueNum: Int) {
 
   val requestQueue = new mutable.Queue[Request]()
 }
+
+case class LSHTable(id: Int, buckets: Array[LSHBucket])
+
+case class LSHBucket(id: Int, size: Int)

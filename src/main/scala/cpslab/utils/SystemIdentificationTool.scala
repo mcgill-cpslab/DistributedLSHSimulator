@@ -18,6 +18,7 @@ class ReceiverActor(k: Int) extends Actor {
 
   override def receive: Receive = {
     case vector: SparseVector =>
+      println(s"response to ${sender().path.toString}")
       sender() ! Response(vector.vectorId, (0 until k).map(i => Random.nextInt()).toList)
   }
 }

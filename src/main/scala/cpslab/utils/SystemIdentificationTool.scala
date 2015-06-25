@@ -89,6 +89,7 @@ object SystemIdentificationTool {
       val actorSystem = ActorSystem("actorSystem", ConfigFactory.parseString(
         s"""
            |akka.actor.provider="akka.remote.RemoteActorRefProvider"
+           |akka.remote.netty.tcp.hostname=192.168.55.147
            |akka.remote.netty.tcp.port=2552
       """.stripMargin))
 

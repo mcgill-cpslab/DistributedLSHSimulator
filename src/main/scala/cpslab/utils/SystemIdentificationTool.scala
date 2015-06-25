@@ -94,11 +94,10 @@ object SystemIdentificationTool {
       println(s"vectorNum $vectorNum, time: ${elapseTime / 1000000} milliseconds")
 
       //identify network RTT
-      /*
+
       //start sender
       actorSystem.actorOf(Props(new SenderActor(vectorList.take(vectorNum),
         "akka.tcp://actorSystem@192.168.55.148:2552/user/receiver")))
-        */
     }
   }
 }

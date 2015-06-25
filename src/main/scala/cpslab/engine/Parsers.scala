@@ -1,10 +1,9 @@
 package cpslab.engine
 
-import java.io.File
+import cpslab.entity.{LSHBucket, LSHTable, VectorBucketMap}
+import cpslab.utils.CommonUtils
 
 import scala.io.Source
-
-import cpslab.entity.{LSHBucket, LSHTable, SparseVector}
 
 class LSHParser(filePath: String) {
 
@@ -33,32 +32,20 @@ class VectorParser(filePath: String) {
 
   import CommonUtils._
 
-  private def getVector(lineStr: String): SparseVector = {
+  private def getVector(lineStr: String): VectorBucketMap = {
     val Array(vectorData, bucketIds) = lineStr.split("\\),")
     //vectorData
     val vectorId = vectorData.split(",")(0).replace("((","").toInt
     //bucketIds
     val bucketIdList = bucketIds.replace(")", "").split(",").map(_.toInt)
-    new SparseVector(vectorId, bucketIdList)
+    new VectorBucketMap(vectorId, bucketIdList)
   }
 
-  def parse(): Seq[SparseVector] = {
+  def parse(): Seq[VectorBucketMap] = {
     val allFilePaths = buildFileListUnderDirectory(filePath)
 
     for (file <- allFilePaths; line <- Source.fromFile(file).getLines()) yield getVector(line)
   }
 }
 
-object CommonUtils {
-  def buildFileListUnderDirectory(rootPath: String): Seq[String] = {
-    val dirObj = new File(rootPath)
-    if (dirObj.isDirectory) {
-      val regularFiles = dirObj.listFiles()
-      regularFiles.view.filter(_.isFile).map(_.getAbsolutePath) ++
-        regularFiles.view.filter(_.isDirectory).map(_.getAbsolutePath).flatMap(
-          buildFileListUnderDirectory)
-    } else {
-      Seq(rootPath)
-    }
-  }
-}
+

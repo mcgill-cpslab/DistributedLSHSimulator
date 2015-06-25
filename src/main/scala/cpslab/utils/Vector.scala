@@ -194,7 +194,7 @@ class DenseVector(val vectorId: Int, val values: Array[Double]) extends Vector {
 }
 
 class SparseVector(
-                    val vectorId: Int,
+                    var vectorId: Int,
                     override val size: Int,
                     val indices: Array[Int],
                     val values: Array[Double]) extends Vector {

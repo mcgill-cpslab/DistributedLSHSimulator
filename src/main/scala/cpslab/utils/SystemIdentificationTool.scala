@@ -33,7 +33,10 @@ class SenderActor(vectors:  Seq[SparseVector], remoteAddress: String) extends Ac
   context.setReceiveTimeout(60000 milliseconds)
 
   override def preStart(): Unit = {
+    var t = 0
     for (vector <- vectors) {
+      vector.vectorId = t
+      t += 1
       startTime += vector.vectorId -> System.currentTimeMillis()
       remoteActor ! vector
     }

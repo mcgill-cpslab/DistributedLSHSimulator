@@ -46,7 +46,7 @@ class SenderActor(vectors:  Seq[SparseVector], remoteAddress: String) extends Ac
     val max = elapseTime.max
     val min = elapseTime.min
     val average = elapseTime.sum / elapseTime.size
-    println(s"network RTT: $max, $min, $average")
+    println(s"network RTT: $max, $min, $average, size: ${elapseTime.size}")
   }
 
   override def receive: Actor.Receive = {

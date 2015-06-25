@@ -1,6 +1,6 @@
 package cpslab.utils
 
-import akka.actor.{Props, ActorSystem, Actor}
+import akka.actor.{ReceiveTimeout, Props, ActorSystem, Actor}
 import akka.actor.Actor.Receive
 import com.typesafe.config.ConfigFactory
 
@@ -52,6 +52,8 @@ class SenderActor(vectors:  Seq[SparseVector], remoteAddress: String) extends Ac
   override def receive: Actor.Receive = {
     case resp: Response =>
       endTime += resp.vector -> System.currentTimeMillis()
+    case ReceiveTimeout =>
+      context.stop(self)
   }
 }
 

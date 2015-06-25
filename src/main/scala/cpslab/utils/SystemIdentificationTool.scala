@@ -75,15 +75,22 @@ object SystemIdentificationTool {
   }
 
   def main(args: Array[String]): Unit = {
-    val actorSystem = ActorSystem("actorSystem", ConfigFactory.parseString(
-      """
-        |akka.actor.provider="akka.remote.RemoteActorRefProvider"
-        |akka.remote.netty.tcp.port=2552
+    if (args.length == 1) {
+      val actorSystem = ActorSystem("actorSystem", ConfigFactory.parseString(
+        s"""
+           |akka.actor.provider="akka.remote.RemoteActorRefProvider"
+           |akka.remote.netty.tcp.port=192.168.55.148
+            |akka.remote.netty.tcp.port=2552
       """.stripMargin))
-    if (args.length == 0) {
       //start receiver actor
       actorSystem.actorOf(Props(new ReceiverActor(10)), name = "receiver")
     } else {
+      val actorSystem = ActorSystem("actorSystem", ConfigFactory.parseString(
+        s"""
+           |akka.actor.provider="akka.remote.RemoteActorRefProvider"
+           |akka.remote.netty.tcp.port=2552
+      """.stripMargin))
+
       val path = args(0)
       val vectorNum = args(1).toInt
 

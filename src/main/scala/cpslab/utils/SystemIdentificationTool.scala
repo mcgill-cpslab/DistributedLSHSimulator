@@ -75,7 +75,7 @@ object SystemIdentificationTool {
   }
 
   def main(args: Array[String]): Unit = {
-    if (args.length == 1) {
+    if (args.length == 0) {
       val actorSystem = ActorSystem("actorSystem", ConfigFactory.parseString(
         s"""
            |akka.actor.provider="akka.remote.RemoteActorRefProvider"

@@ -1,4 +1,4 @@
 ====Vector Similarity Computation====
 vectorNum 1000, time: 259 milliseconds
 
-network RTT: 540, 160, 406, size: 1000
+network RTT: 515, 164, 379, size: 1000

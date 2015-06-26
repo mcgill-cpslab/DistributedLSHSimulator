@@ -18,7 +18,10 @@ class ReceiverActor(k: Int) extends Actor {
 
   override def receive: Receive = {
     case vector: SparseVector =>
-      sender() ! Response(vector.vectorId, (0 until k).map(i => Random.nextInt()).toList)
+      val b = System.currentTimeMillis()
+      val a = (0 until k).map(i => Random.nextInt()).toList
+      println(s"${System.currentTimeMillis() - b}")
+      sender() ! Response(vector.vectorId, a)
   }
 }
 

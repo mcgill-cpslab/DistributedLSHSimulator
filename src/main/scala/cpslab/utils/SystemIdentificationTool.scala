@@ -1,11 +1,9 @@
 package cpslab.utils
 
-import akka.actor.{ReceiveTimeout, Props, ActorSystem, Actor}
-import akka.actor.Actor.Receive
+import akka.actor.{Actor, ActorSystem, Props, ReceiveTimeout}
 import com.typesafe.config.ConfigFactory
 
 import scala.collection.mutable
-import scala.collection.mutable.ListBuffer
 import scala.concurrent.duration._
 import scala.io.Source
 import scala.language.postfixOps

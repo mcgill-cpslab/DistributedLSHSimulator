@@ -1,0 +1,11 @@
+package cpslab;
+
+option java_package = "cpslab.message";
+option java_outer_classname = "Vector";
+
+message SparseVector {
+    required int32 vectorid = 1;
+    required int32 size = 2;
+    repeated int32 indices = 3;
+    repeated double values = 4;
+}

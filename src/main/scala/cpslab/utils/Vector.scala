@@ -193,11 +193,10 @@ class DenseVector(val vectorId: Int, val values: Array[Double]) extends Vector {
   }
 }
 
-class SparseVector(
-                    var vectorId: Int,
-                    override val size: Int,
-                    val indices: Array[Int],
-                    val values: Array[Double]) extends Vector {
+class SparseVector(var vectorId: Int,
+                   override val size: Int,
+                   val indices: Array[Int],
+                   val values: Array[Double]) extends Vector {
 
   def this(paraTuple: (Int, Int, Array[Int], Array[Double])) =
     this(paraTuple._1, paraTuple._2, paraTuple._3, paraTuple._4)
